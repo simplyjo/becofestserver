@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const app = express();
 
+require("dotenv").config();
 
 
 app.use(
@@ -28,7 +29,6 @@ const userRoute = require("./routes/user");
 const taskRoute = require("./routes/task");
 
 
-require("dotenv").config();
 
 var corsOptions = {
   origin: "*",
