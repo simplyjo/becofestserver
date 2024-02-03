@@ -6,37 +6,32 @@ const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  name:{
-    type: String, // or whatever
-   
-  },
-  userName: { type: String},
-  email:{ type: String,unique: true, required: true },
-  twitterId: { type: String },
-  userId:"",
-  totalPoint:0,
-  profileImageUrl: String,
-  task_one:false,
-  task_two:false,
-  task_three:false,
-  task_four:false,
-  referrals:{type:[String]},
-  referrer:{type:String},
-  referralCode:{type:String},
-  tweet:false,
-  wallet:String,
-  walletStatus:false,
-  password: { type: String, required: true },
-  accesstoken:"",
-  followStatus:false,
-  ownerStatus:false,
-  likeStatus:false,
-  tgStatus:false,
-  discordStatus:false,
-  tweetStatus:false,
-  twitterUsername:"",
-  discordUsername:"",
-  tgUsername:""
+  
+  walletAddress: { type: String},
+  email: { type: String },
+ userId:"",
+totalPoint:0,
+profileImageUrl: String,
+task_one:false,
+task_two:false,
+task_three:false,
+task_four:false,
+referrals:{type:[String]},
+referrer:{type:String},
+referralCode:{type:String},
+tweet:false,
+wallet:String,
+walletStatus:false,
+accesstoken:"",
+followStatus:false,
+ownerStatus:false,
+likeStatus:false,
+tgStatus:false,
+discordStatus:false,
+tweetStatus:false,
+twitterUsername:"",
+discordUsername:"",
+tgUsername:""
 
 
 });
@@ -60,3 +55,4 @@ module.exports.comparePasswords = async (inputPassword, hashedPassword) => {
     throw new Error("Comparison failed", error);
   }
 };
+

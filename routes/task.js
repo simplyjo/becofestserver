@@ -7,8 +7,8 @@ const cleanBody = require("../middlewares/cleanBody");
 router.patch("/follow", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email, twitterName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet, twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
 
     console.log("user", user, req.body)
 
@@ -26,7 +26,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 1000
+    user.totalPoint = user.totalPoint + 125
     user.twitterUsername=twitterName
     user.followStatus = true
 
@@ -50,8 +50,9 @@ router.patch("/follow", cleanBody, async (req, res) => {
 router.patch("/owner", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email,twitterName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet,twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
 
     console.log("user", user, req.body)
 
@@ -69,7 +70,7 @@ router.patch("/owner", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 1500
+    user.totalPoint = user.totalPoint + 125
     user.twitterUsername=twitterName
     user.ownerStatus = true
 
@@ -93,8 +94,9 @@ router.patch("/owner", cleanBody, async (req, res) => {
 router.patch("/like", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email,twitterName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet,twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
 
     console.log("user", user, req.body)
 
@@ -112,7 +114,7 @@ router.patch("/like", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 1500
+    user.totalPoint = user.totalPoint + 125
     user.twitterUsername=twitterName
     user.likeStatus = true
 
@@ -136,8 +138,9 @@ router.patch("/like", cleanBody, async (req, res) => {
 router.patch("/discord", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email,discordName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet,discordName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
 
     console.log("user", user, req.body)
 
@@ -155,7 +158,7 @@ router.patch("/discord", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 1500
+    user.totalPoint = user.totalPoint + 125
     user.discordUsername=discordName
 
     user.discordStatus = true
@@ -180,8 +183,9 @@ router.patch("/discord", cleanBody, async (req, res) => {
 router.patch("/tg", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email, tgName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet, tgName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
 
     console.log("user", user, req.body)
 
@@ -199,7 +203,7 @@ router.patch("/tg", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 1500
+    user.totalPoint = user.totalPoint + 125
     user.tgUsername=tgName
 
     user.tgStatus = true
@@ -224,8 +228,9 @@ router.patch("/tg", cleanBody, async (req, res) => {
 router.patch("/tweet", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
-    const  {email, twitterName} = req.body;
-    const user = await User.findOne({ email });
+    const  {wallet, twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
 
     console.log("user", user, req.body)
 
@@ -243,7 +248,7 @@ router.patch("/tweet", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 2000
+    user.totalPoint = user.totalPoint + 125
     user.twitterUsername=twitterName
     user.tweetStatus = true
 
@@ -264,48 +269,6 @@ router.patch("/tweet", cleanBody, async (req, res) => {
     });
   }
 });
-router.patch("/wallet", cleanBody, async (req, res) => {
-  try {
-    // const { wallet} = req.body;
-    const  {email, wallet} = req.body;
-    const user = await User.findOne({ email });
 
-    console.log("user", user, req.body)
-
-    if (!user) {
-      return res.send({
-        error: true,
-        message: "Server Error",
-      });
-    }
-
-    if(user.walletStatus){
-      return res.send({
-        error: true,
-        message: "Reward Already Awarded",
-      });
-    }
-
-    user.totalPoint = user.totalPoint + 2000
-    user.wallet=wallet
-    user.walletStatus = true
-
-
-    await user.save()
-    //Success
-    return res.send({
-      success: true,
-      user:user,
-      message: "Reward Success!",
-  
-    });
-  } catch (err) {
-    console.error("Login error", err);
-    return res.status(500).json({
-      error: true,
-      message: "Couldn't login. Please try again later.",
-    });
-  }
-});
 
 module.exports = router;

@@ -12,13 +12,7 @@ app.use(
   bodyParser.json({ limit: "50mb", extended: true, parameterLimit: 50000 })
 );
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
-app.use(
-  bodyParser.urlencoded({
-    limit: "50mb",
-    extended: true,
-    parameterLimit: 50000,
-  })
-);
+
 
 
 const waitlistRoute = require("./routes/waitlist");
@@ -27,6 +21,10 @@ const authRoutes = require("./routes/auth-routes");
 const checkerRoutes = require("./routes/checker");
 const userRoute = require("./routes/user");
 const taskRoute = require("./routes/task");
+const callbackRoutes = require("./routes/callback");
+const userRoutes = require("./routes/user");
+const loginRoutes = require("./routes/login");
+
 
 
 
@@ -38,14 +36,18 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use("/waitlist", waitlistRoute)
-app.use("/user", userRoute)
+// app.use("/waitlist", waitlistRoute)
+
 app.use("/task", taskRoute)
 
 
 
 app.use("/", indexRoute);
+
 app.use("/auth", authRoutes);
+app.use("/callback", callbackRoutes);
+app.use("/user", userRoutes);
+app.use("/login", loginRoutes);
 app.use("/checker", checkerRoutes);
 app.use(express.static("client/build"));
 
