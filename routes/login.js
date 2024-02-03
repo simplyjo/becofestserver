@@ -31,7 +31,7 @@ router.post("/", cleanBody, async (req, res) => {
       walletAddress:wallet,
       email:'',
       userId:"",
-      totalPoint:0,
+      totalPoint:100,
       profileImageUrl: "",
       task_one:false,
       task_two:false,
@@ -45,7 +45,7 @@ router.post("/", cleanBody, async (req, res) => {
       walletStatus:false,
       accesstoken:"",
       followStatus:false,
-      ownerStatus:false,
+      followPartnerStatus:false,
       likeStatus:false,
       tgStatus:false,
       discordStatus:false,
@@ -98,14 +98,14 @@ router.post("/invite", cleanBody, async (req, res) => {
           {
     
             $push: { referrals: wallet },
-            $inc: { totalPoint: 200 }
+            $inc: { totalPoint: 250 }
       })
     
         const newUser = new User({
           walletAddress:wallet,
           email:'',
           userId:"",
-          totalPoint:0,
+          totalPoint:100,
           profileImageUrl: "",
           task_one:false,
           task_two:false,
@@ -147,7 +147,7 @@ router.post("/invite", cleanBody, async (req, res) => {
         walletAddress:wallet,
         email:'',
         userId:"",
-        totalPoint:0,
+        totalPoint:100,
         profileImageUrl: "",
         task_one:false,
         task_two:false,

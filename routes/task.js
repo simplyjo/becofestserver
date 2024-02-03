@@ -26,7 +26,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 125
+    user.totalPoint = user.totalPoint + 222
     user.twitterUsername=twitterName
     user.followStatus = true
 
@@ -47,7 +47,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
     });
   }
 });
-router.patch("/owner", cleanBody, async (req, res) => {
+router.patch("/partner", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
     const  {wallet,twitterName} = req.body;
@@ -63,16 +63,16 @@ router.patch("/owner", cleanBody, async (req, res) => {
       });
     }
 
-    if(user.ownerStatus){
+    if(user.followPartnerStatus){
       return res.send({
         error: true,
         message: "Reward Already Awarded",
       });
     }
 
-    user.totalPoint = user.totalPoint + 125
+    user.totalPoint = user.totalPoint + 222
     user.twitterUsername=twitterName
-    user.ownerStatus = true
+    user.followPartnerStatus = true
 
 
     await user.save()
@@ -114,7 +114,7 @@ router.patch("/like", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 125
+    user.totalPoint = user.totalPoint + 333
     user.twitterUsername=twitterName
     user.likeStatus = true
 
@@ -203,7 +203,7 @@ router.patch("/tg", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 125
+    user.totalPoint = user.totalPoint + 222
     user.tgUsername=tgName
 
     user.tgStatus = true
@@ -248,7 +248,7 @@ router.patch("/tweet", cleanBody, async (req, res) => {
       });
     }
 
-    user.totalPoint = user.totalPoint + 125
+    user.totalPoint = user.totalPoint + 555
     user.twitterUsername=twitterName
     user.tweetStatus = true
 
