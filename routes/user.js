@@ -110,7 +110,6 @@ console.log("getAllROute", )
               { $substr: ['$walletAddress', { $subtract: [{ $strLenCP: '$walletAddress' }, 4] }, 4] }
             ]
           },
-          twitterUsername:1,
           totalPoint:1
          }
         }
