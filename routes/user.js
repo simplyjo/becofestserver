@@ -123,7 +123,7 @@ console.log("getAllROute", )
             totalPoint:1
            }
           }
-        ])
+        ]).sort({ totalPoint: -1 })
    console.log("allusers", users)
 
 
