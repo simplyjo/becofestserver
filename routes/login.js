@@ -52,7 +52,10 @@ router.post("/", cleanBody, async (req, res) => {
       tweetStatus:false,
       twitterUsername:"",
       discordUsername:"",
-      tgUsername:""
+      tgUsername:"",
+      tgPartner2Status:false,
+      followPartner2Status:false,
+
      })
   
      await newUser.save()
@@ -126,7 +129,10 @@ router.post("/invite", cleanBody, async (req, res) => {
           tweetStatus:false,
           twitterUsername:"",
           discordUsername:"",
-          tgUsername:""
+          tgUsername:"",
+          tgPartner2Status:false,
+          followPartner2Status:false,
+  followPartnerStatus:false,
          })
       
          await newUser.save()
@@ -168,7 +174,11 @@ router.post("/invite", cleanBody, async (req, res) => {
         tweetStatus:false,
         twitterUsername:"",
         discordUsername:"",
-        tgUsername:""
+        tgUsername:"",
+        tgPartner2Status:false,
+        followPartner2Status:false,
+followPartnerStatus:false,
+
        })
     
        await newUser.save()

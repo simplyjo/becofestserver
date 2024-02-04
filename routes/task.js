@@ -91,6 +91,50 @@ router.patch("/partner", cleanBody, async (req, res) => {
     });
   }
 });
+router.patch("/partner2", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const  {wallet,twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if(user.followPartnerStatus){
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.totalPoint = user.totalPoint + 222
+    user.twitterUsername=twitterName
+    user.followPartner2Status = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user:user,
+      message: "Reward Success!",
+  
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
 router.patch("/like", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
@@ -207,6 +251,51 @@ router.patch("/tg", cleanBody, async (req, res) => {
     user.tgUsername=tgName
 
     user.tgStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user:user,
+      message: "Reward Success!",
+  
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
+router.patch("/tgpartner", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const  {wallet, tgName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if(user.tgStatus){
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.totalPoint = user.totalPoint + 222
+    user.tgUsername=tgName
+
+    user.tgPartner2Status = true
 
 
     await user.save()

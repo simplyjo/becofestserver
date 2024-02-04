@@ -115,6 +115,12 @@ console.log("getAllROute", )
   //       }
   //     ]
   //  ).sort({ totalPoint: -1 })
+  // await User.updateMany(
+  // {},
+  //   {
+  //     $set: { tgPartner2Status: false, followPartner2Status: false }
+  //   }
+  // )
    const users = await User.aggregate(
         [
           {
