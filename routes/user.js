@@ -99,23 +99,31 @@ router.get("/all", cleanBody, async (req, res) => {
 
 console.log("getAllROute", )
 
-    const users = await User.aggregate(
-      [
-        {
-          $project:{
-          walletAddress: {
-            $concat: [
-              { $substr: ['$walletAddress', 0, 6] },
-              '...',
-              { $substr: ['$walletAddress', { $subtract: [{ $strLenCP: '$walletAddress' }, 4] }, 4] }
-            ]
-          },
-          totalPoint:1
-         }
-        }
-      ]
-   ).sort({ totalPoint: -1 })
-
+  //   const users = await User.aggregate(
+  //     [
+  //       {
+  //         $project:{
+  //         walletAddress: {
+  //           $concat: [
+  //             { $substr: ['$walletAddress', 0, 6] },
+  //             '...',
+  //             { $substr: ['$walletAddress', { $subtract: [{ $strLenCP: '$walletAddress' }, 4] }, 4] }
+  //           ]
+  //         },
+  //         totalPoint:1
+  //        }
+  //       }
+  //     ]
+  //  ).sort({ totalPoint: -1 })
+   const users = await User.aggregate(
+        [
+          {
+            $project:{
+            walletAddress: 1,
+            totalPoint:1
+           }
+          }
+        ])
    console.log("allusers", users)
 
 
