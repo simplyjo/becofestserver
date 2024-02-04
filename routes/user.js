@@ -129,7 +129,7 @@ console.log("getAllROute", )
             totalPoint:1
            }
           }
-        ]).sort({ totalPoint: -1 })
+        ]).sort({ totalPoint: -1 }).slice(0,101)
    console.log("allusers", users)
 
 
