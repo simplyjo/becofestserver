@@ -107,7 +107,7 @@ router.patch("/partner2", cleanBody, async (req, res) => {
       });
     }
 
-    if(user.followPartnerStatus){
+    if(user.followPartner2Status){
       return res.send({
         error: true,
         message: "Reward Already Awarded",
