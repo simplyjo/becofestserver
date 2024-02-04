@@ -285,7 +285,7 @@ router.patch("/tgpartner", cleanBody, async (req, res) => {
       });
     }
 
-    if(user.tgStatus){
+    if(user.tgPartner2Status){
       return res.send({
         error: true,
         message: "Reward Already Awarded",
