@@ -105,7 +105,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           walletAddress:wallet,
           email:'',
           userId:"",
-          totalPoint:100,
+          totalPoint:250,
           profileImageUrl: "",
           task_one:false,
           task_two:false,
