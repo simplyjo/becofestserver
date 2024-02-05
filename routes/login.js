@@ -55,6 +55,8 @@ router.post("/", cleanBody, async (req, res) => {
       tgUsername:"",
       tgPartner2Status:false,
       followPartner2Status:false,
+      discord3Status:false,
+followPartner3Status:false
 
      })
   
@@ -133,6 +135,8 @@ router.post("/invite", cleanBody, async (req, res) => {
           tgPartner2Status:false,
           followPartner2Status:false,
   followPartnerStatus:false,
+  discord3Status:false,
+followPartner3Status:false
          })
       
          await newUser.save()
@@ -178,6 +182,8 @@ router.post("/invite", cleanBody, async (req, res) => {
         tgPartner2Status:false,
         followPartner2Status:false,
 followPartnerStatus:false,
+discord3Status:false,
+followPartner3Status:false
 
        })
     

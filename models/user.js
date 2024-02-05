@@ -33,7 +33,9 @@ discordStatus:false,
 tweetStatus:false,
 twitterUsername:"",
 discordUsername:"",
-tgUsername:""
+tgUsername:"",
+discord3Status:false,
+followPartner3Status:false
 
 
 });

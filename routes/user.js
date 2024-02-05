@@ -118,7 +118,8 @@ console.log("getAllROute", )
   // await User.updateMany(
   // {},
   //   {
-  //     $set: { tgPartner2Status: false, followPartner2Status: false }
+  //     $set: { discord3Status:false,
+  //       followPartner3Status:false }
   //   }
   // )
    const users = await User.aggregate(

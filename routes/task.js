@@ -135,6 +135,50 @@ router.patch("/partner2", cleanBody, async (req, res) => {
     });
   }
 });
+router.patch("/partner3", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const  {wallet,twitterName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if(user.followPartner3Status){
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.totalPoint = user.totalPoint + 222
+    user.twitterUsername=twitterName
+    user.followPartner3Status = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user:user,
+      message: "Reward Success!",
+  
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
 router.patch("/like", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
@@ -206,6 +250,51 @@ router.patch("/discord", cleanBody, async (req, res) => {
     user.discordUsername=discordName
 
     user.discordStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user:user,
+      message: "Reward Success!",
+  
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
+router.patch("/discord3", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const  {wallet,discordName} = req.body;
+    const user = await User.findOne({ walletAddress:wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if(user.discord3Status){
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.totalPoint = user.totalPoint + 125
+    user.discordUsername=discordName
+
+    user.discord3Status = true
 
 
     await user.save()
