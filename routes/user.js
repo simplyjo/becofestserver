@@ -131,7 +131,7 @@ console.log("getAllROute", )
            }
           }
         ]).sort({ totalPoint: -1 }).limit(100)
-   console.log("allusers", users)
+  //  console.log("allusers", users)
 
 
    return res.status(200).json({
@@ -140,7 +140,7 @@ console.log("getAllROute", )
     users: users,
   });
 
-    console.log("users",users)
+    // console.log("users",users)
     
   } catch {
 
