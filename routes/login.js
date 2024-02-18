@@ -31,7 +31,7 @@ router.post("/", cleanBody, async (req, res) => {
       walletAddress:wallet,
       email:'',
       userId:"",
-      totalPoint:100,
+      totalPoint:0,
       profileImageUrl: "",
       task_one:false,
       task_two:false,
@@ -60,7 +60,7 @@ followPartner3Status:false
 
      })
   
-     await newUser.save()
+    
 
      return res.status(200).json({
       success: true,

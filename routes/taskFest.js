@@ -26,7 +26,8 @@ router.patch("/follow", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 222
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
     user.twitterUsername=twitterName
     user.followStatus = true
 
@@ -70,7 +71,8 @@ router.patch("/partner", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 222
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
     user.twitterUsername=twitterName
     user.followPartnerStatus = true
 
@@ -91,94 +93,8 @@ router.patch("/partner", cleanBody, async (req, res) => {
     });
   }
 });
-router.patch("/partner2", cleanBody, async (req, res) => {
-  try {
-    // const { wallet} = req.body;
-    const  {wallet,twitterName} = req.body;
-    const user = await Season.findOne({ walletAddress:wallet });
 
 
-    console.log("user", user, req.body)
-
-    if (!user) {
-      return res.send({
-        error: true,
-        message: "Server Error",
-      });
-    }
-
-    if(user.followPartner2Status){
-      return res.send({
-        error: true,
-        message: "Reward Already Awarded",
-      });
-    }
-
-    user.s1 = user.s1 + 222
-    user.twitterUsername=twitterName
-    user.followPartner2Status = true
-
-
-    await user.save()
-    //Success
-    return res.send({
-      success: true,
-      user:user,
-      message: "Reward Success!",
-  
-    });
-  } catch (err) {
-    console.error("Login error", err);
-    return res.status(500).json({
-      error: true,
-      message: "Couldn't login. Please try again later.",
-    });
-  }
-});
-router.patch("/partner3", cleanBody, async (req, res) => {
-  try {
-    // const { wallet} = req.body;
-    const  {wallet,twitterName} = req.body;
-    const user = await Season.findOne({ walletAddress:wallet });
-
-
-    console.log("user", user, req.body)
-
-    if (!user) {
-      return res.send({
-        error: true,
-        message: "Server Error",
-      });
-    }
-
-    if(user.followPartner3Status){
-      return res.send({
-        error: true,
-        message: "Reward Already Awarded",
-      });
-    }
-
-    user.s1 = user.s1 + 222
-    user.twitterUsername=twitterName
-    user.followPartner3Status = true
-
-
-    await user.save()
-    //Success
-    return res.send({
-      success: true,
-      user:user,
-      message: "Reward Success!",
-  
-    });
-  } catch (err) {
-    console.error("Login error", err);
-    return res.status(500).json({
-      error: true,
-      message: "Couldn't login. Please try again later.",
-    });
-  }
-});
 router.patch("/like", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
@@ -202,7 +118,9 @@ router.patch("/like", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 333
+    user.s1 = user.s1 + 3
+    user.totalPoint = user.totalPoint + 3
+
     user.twitterUsername=twitterName
     user.likeStatus = true
 
@@ -246,7 +164,8 @@ router.patch("/discord", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 125
+    user.s1 = user.s1 + 1
+    user.totalPoint = user.totalPoint + 1
     user.discordUsername=discordName
 
     user.discordStatus = true
@@ -268,51 +187,7 @@ router.patch("/discord", cleanBody, async (req, res) => {
     });
   }
 });
-router.patch("/discord3", cleanBody, async (req, res) => {
-  try {
-    // const { wallet} = req.body;
-    const  {wallet,discordName} = req.body;
-    const user = await Season.findOne({ walletAddress:wallet });
 
-
-    console.log("user", user, req.body)
-
-    if (!user) {
-      return res.send({
-        error: true,
-        message: "Server Error",
-      });
-    }
-
-    if(user.discord3Status){
-      return res.send({
-        error: true,
-        message: "Reward Already Awarded",
-      });
-    }
-
-    user.s1 = user.s1 + 125
-    user.discordUsername=discordName
-
-    user.discord3Status = true
-
-
-    await user.save()
-    //Success
-    return res.send({
-      success: true,
-      user:user,
-      message: "Reward Success!",
-  
-    });
-  } catch (err) {
-    console.error("Login error", err);
-    return res.status(500).json({
-      error: true,
-      message: "Couldn't login. Please try again later.",
-    });
-  }
-});
 router.patch("/tg", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
@@ -336,7 +211,9 @@ router.patch("/tg", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 222
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
+
     user.tgUsername=tgName
 
     user.tgStatus = true
@@ -426,7 +303,8 @@ router.patch("/tweet", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 555
+    user.s1 = user.s1 + 5
+    user.totalPoint = user.totalPoint + 5
     user.twitterUsername=twitterName
     user.tweetStatus = true
 
@@ -470,8 +348,53 @@ router.patch("/quiz", cleanBody, async (req, res) => {
       });
     }
 
-    user.s1 = user.s1 + 555
+    user.s1 = user.s1 + 5
+    user.totalPoint = user.totalPoint + 5
     user.quiz = true
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user:user,
+      message: "Reward Success!",
+  
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
+router.patch("/mint", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const  {wallet} = req.body;
+    const user = await Season.findOne({ walletAddress:wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if(user.nft_s1){
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.nft_count = 1
+    user.nft_s1=true
+    user.totalPoint = user.totalPoint + 10
+    user.s1 = user.s1 + 10
 
     await user.save()
     //Success

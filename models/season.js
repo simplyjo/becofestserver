@@ -12,6 +12,7 @@ const seasonSchema = new Schema({
  userId:"",
 totalPoint:0,
 quiz:false,
+
 s1:0,
 s2:0,
 s3:0,
@@ -31,7 +32,9 @@ tweetStatus:false,
 twitterUsername:"",
 discordUsername:"",
 tgUsername:"",
-
+nft_count:0,
+nft_s1:false,
+nft_s2:false,
 
 
 });

@@ -2,6 +2,8 @@ const express = require("express");
 const cleanBody = require("../middlewares/cleanBody");
 const router = express.Router();
 const User = require("../models/user");
+const Season = require("../models/season");
+
 const { v4: uuid } = require("uuid");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -53,33 +55,7 @@ router.get("/login", cleanBody, async (req, res) => {
   }
 
 });
-// router.get("/", cleanBody, async (req, res) => {
 
-//   try {
-//     const token = req.cookies[COOKIE_NAME];
-//     if (!token) {
-//       throw new Error("Not Authenticated");
-//     }
-//     const payload = await jwt.verify(token, JWT_SECRET);
-//     const userFromDb = await User.findUnique({
-//       where: { id: payload?.id },
-//     });
-//     if (!userFromDb) throw new Error("Not Authenticated");
-//     if (userFromDb.type === "twitter") {
-//       if (!payload.accessToken) {
-//         throw new Error("Not Authenticated");
-//       }
-//       const twUser = await getTwitterUser(payload.accessToken);
-//       if (twUser?.id !== userFromDb.id) {
-//         throw new Error("Not Authenticated");
-//       }
-//     }
-//     res.json(userFromDb)
-//   } catch (err) {
-//     res.status(401).json("Not Authenticated")
-//   }
-
-// });
 router.get("/all", cleanBody, async (req, res) => {
 
   try {
@@ -123,6 +99,40 @@ console.log("getAllROute", )
   //   }
   // )
    const users = await User.aggregate(
+        [
+          {
+            $project:{
+            walletAddress: 1,
+            totalPoint:1
+           }
+          }
+        ]).sort({ totalPoint: -1 }).limit(100)
+  //  console.log("allusers", users)
+
+
+   return res.status(200).json({
+    success: true,
+    message: "All users.",
+    users: users,
+  });
+
+    // console.log("users",users)
+    
+  } catch {
+
+  }
+
+});
+router.get("/fest/all", cleanBody, async (req, res) => {
+
+  try {
+
+
+
+console.log("getAllROute", )
+
+ 
+   const users = await Season.aggregate(
         [
           {
             $project:{

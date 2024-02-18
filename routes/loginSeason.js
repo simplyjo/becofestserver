@@ -31,9 +31,9 @@ router.post("/", cleanBody, async (req, res) => {
       walletAddress:wallet,
       email:'',
       userId:"",
-      totalPoint:0,
+      totalPoint:1,
 quiz:false,
-      s1:100,
+      s1:1,
       profileImageUrl: "",
       referrals:[],
       referrer:"",
@@ -50,7 +50,9 @@ quiz:false,
       twitterUsername:"",
       discordUsername:"",
       tgUsername:"",
-     
+      nft_count:0,
+      nft_s1:false,
+      nft_s2:false,
 
      })
   
@@ -97,15 +99,16 @@ router.post("/invite", cleanBody, async (req, res) => {
           {
     
             $push: { referrals: wallet },
-            $inc: { s1: 250 }
+            $inc: { s1: 3 },
+            $inc: { totalPoint: 3 },
       })
     
       const newUser = new User({
         walletAddress:wallet,
         email:'',
         userId:"",
-        totalPoint:0,
-        s1:100,
+        totalPoint:3,
+        s1:3,
 quiz:false,
         profileImageUrl: "",
         referrals:[],
@@ -123,7 +126,9 @@ quiz:false,
         twitterUsername:"",
         discordUsername:"",
         tgUsername:"",
-       
+        nft_count:0,
+        nft_s1:false,
+        nft_s2:false,
   
        })
     
@@ -146,8 +151,8 @@ quiz:false,
         walletAddress:wallet,
         email:'',
         userId:"",
-        totalPoint:0,
-        s1:100,
+        totalPoint:1,
+        s1:1,
 quiz:false,
 
         profileImageUrl: "",
@@ -166,7 +171,9 @@ quiz:false,
         twitterUsername:"",
         discordUsername:"",
         tgUsername:"",
-       
+        nft_count:0,
+        nft_s1:false,
+        nft_s2:false,
   
        })
     
