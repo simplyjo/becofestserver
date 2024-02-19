@@ -3,6 +3,7 @@ const cleanBody = require("../middlewares/cleanBody");
 const router = express.Router();
 const User = require("../models/user");
 const Season = require("../models/season");
+const Admin = require("../models/admin");
 
 const { v4: uuid } = require("uuid");
 const jwt = require("jsonwebtoken");
@@ -158,7 +159,29 @@ console.log("getAllROute", )
 
 });
 
+router.get("/stats", cleanBody, async (req, res) => {
 
+  try {
+
+ 
+ 
+   const stats = await Admin.find({})
+ 
+console.log('admin', stats)
+
+   return res.status(200).json({
+    success: true,
+    message: ".",
+    stats: stats,
+  });
+
+   
+    
+  } catch {
+
+  }
+
+});
 
 
 
