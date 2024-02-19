@@ -369,6 +369,49 @@ router.patch("/quiz", cleanBody, async (req, res) => {
     });
   }
 });
+router.patch("/premint", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const { wallet } = req.body;
+    const user = await Season.findOne({ walletAddress: wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if (user.premintStatus) {
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
+    user.premintStatus = true
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user: user,
+      message: "Reward Success!",
+
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
 router.patch("/mint", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;

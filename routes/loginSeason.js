@@ -56,6 +56,7 @@ quiz:false,
       nft_count:0,
       nft_s1:false,
       nft_s2:false,
+      premintStatus:false
 
      })
 
@@ -134,6 +135,8 @@ quiz:false,
         nft_count:0,
         nft_s1:false,
         nft_s2:false,
+        premintStatus:false
+
   
        })
     
@@ -179,6 +182,7 @@ quiz:false,
         nft_count:0,
         nft_s1:false,
         nft_s2:false,
+        premintStatus:false
   
        })
     
