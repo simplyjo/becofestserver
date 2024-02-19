@@ -49,51 +49,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
     });
   }
 });
-router.patch("/partner", cleanBody, async (req, res) => {
-  try {
-    // const { wallet} = req.body;
-    const { wallet, twitterName } = req.body;
-    const user = await Season.findOne({ walletAddress: wallet });
 
-
-    console.log("user", user, req.body)
-
-    if (!user) {
-      return res.send({
-        error: true,
-        message: "Server Error",
-      });
-    }
-
-    if (user.followPartnerStatus) {
-      return res.send({
-        error: true,
-        message: "Reward Already Awarded",
-      });
-    }
-
-    user.s1 = user.s1 + 2
-    user.totalPoint = user.totalPoint + 2
-    user.twitterUsername = twitterName
-    user.followPartnerStatus = true
-
-
-    await user.save()
-    //Success
-    return res.send({
-      success: true,
-      user: user,
-      message: "Reward Success!",
-
-    });
-  } catch (err) {
-    console.error("Login error", err);
-    return res.status(500).json({
-      error: true,
-      message: "Couldn't login. Please try again later.",
-    });
-  }
-});
 
 
 router.patch("/like", cleanBody, async (req, res) => {
@@ -486,4 +442,142 @@ router.patch("/mint", cleanBody, async (req, res) => {
 });
 
 
+router.patch("/followBeco", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const { wallet, twitterName } = req.body;
+    const user = await Season.findOne({ walletAddress: wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if (user.followBecoStatus) {
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
+    user.twitterUsername = twitterName
+    user.followBecoStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user: user,
+      message: "Reward Success!",
+
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
+router.patch("/discordBeco", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const { wallet, discordName } = req.body;
+    const user = await Season.findOne({ walletAddress: wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if (user.discordBecoStatus) {
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.s1 = user.s1 + 1
+    user.totalPoint = user.totalPoint + 1
+    user.discordUsername = discordName
+
+    user.discordBecoStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user: user,
+      message: "Reward Success!",
+
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
+router.patch("/tgBeco", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const { wallet, tgName } = req.body;
+    const user = await Season.findOne({ walletAddress: wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if (user.tgBecoStatus) {
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.s1 = user.s1 + 2
+    user.totalPoint = user.totalPoint + 2
+
+    user.tgUsername = tgName
+
+    user.tgBecoStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user: user,
+      message: "Reward Success!",
+
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
 module.exports = router;
