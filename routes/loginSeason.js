@@ -5,25 +5,28 @@ const User = require("../models/season");
 const { v4: uuid } = require("uuid");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const { customAlphabet: generate } = require("nanoid");
+const { customAlphabet } = require("nanoid");
 const mongoose = require("mongoose");
 
 // Generate Referral Code for new user
-const CHARACTER_SET =
-  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-const REFERRAL_CODE_LENGTH = 5;
+const CHARACTER_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+const REFERRAL_CODE_LENGTH = 8;
 // Generate Referral Code for new user
-const referralCode = generate(CHARACTER_SET, REFERRAL_CODE_LENGTH);
 
-
+const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",8);
+const code = nanoid()
 router.post("/", cleanBody, async (req, res) => {
 
   try {
+  
+
+    // console.log('code', nanoid(CHARACTER_SET,8))
 
 
     console.log("login","newlogin",)
-    const {wallet} = req.body
+    const { wallet} = req.body
    const user = await User.findOne({walletAddress:wallet})
+  
   //  console.log("user",user,)
    if(!user){
     
@@ -37,7 +40,7 @@ quiz:false,
       profileImageUrl: "",
       referrals:[],
       referrer:"",
-      referralCode:wallet,
+      referralCode:code,
       tweet:false,
       wallet:"",
       walletStatus:false,
@@ -55,6 +58,8 @@ quiz:false,
       nft_s2:false,
 
      })
+
+     console.log('code', code)
   
      await newUser.save()
 
@@ -88,9 +93,9 @@ router.post("/invite", cleanBody, async (req, res) => {
     console.log("logininvite","newlogin",)
     const {wallet, invite} = req.body
    const user = await User.findOne({walletAddress:wallet})
-   const refferredUser = await User.findOne({walletAddress:invite})
+   const refferredUser = await User.findOne({referralCode:invite})
    console.log("user",user,invite,wallet,refferredUser)
-   if(refferredUser && invite !== wallet){
+   if(refferredUser && invite !== user.referralCode){
       console.log("true")
       if(!user){
 
@@ -113,7 +118,7 @@ quiz:false,
         profileImageUrl: "",
         referrals:[],
         referrer:"",
-        referralCode:wallet,
+        referralCode:code,
         tweet:false,
         wallet:"",
         walletStatus:false,
@@ -158,7 +163,7 @@ quiz:false,
         profileImageUrl: "",
         referrals:[],
         referrer:"",
-        referralCode:wallet,
+        referralCode:code,
         tweet:false,
         wallet:"",
         walletStatus:false,
