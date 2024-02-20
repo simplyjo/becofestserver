@@ -110,6 +110,52 @@ router.post("/invite", cleanBody, async (req, res) => {
       } else {
 
 
+        if(refferredUser.referrals.length >= 222) {
+          const newUser = new User({
+            walletAddress: wallet,
+            email: '',
+            userId: "",
+            totalPoint: 3,
+            s1: 3,
+            quiz: false,
+            profileImageUrl: "",
+            referrals: [],
+            referrer: "",
+            referralCode: code,
+            tweet: false,
+            wallet: "",
+            walletStatus: false,
+            accesstoken: "",
+            followStatus: false,
+            likeStatus: false,
+            tgStatus: false,
+            discordStatus: false,
+            tweetStatus: false,
+            twitterUsername: "",
+            discordUsername: "",
+            tgUsername: "",
+            nft_count: 0,
+            nft_s1: false,
+            nft_s2: false,
+            premintStatus: false
+  
+  
+          })
+  
+  
+         
+  
+          await newUser.save()
+  
+          return res.status(200).json({
+            success: true,
+            message: "Login.",
+            user: newUser
+          });
+
+        } else {
+
+        
 
         console.log("hehehrhshhhdhhd")
         await User.updateOne(
@@ -153,7 +199,7 @@ router.post("/invite", cleanBody, async (req, res) => {
         })
 
 
-        console.log()
+       
 
         await newUser.save()
 
@@ -163,7 +209,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           user: newUser
         });
 
-      }
+      }}
     } else {
       console.log("false")
       if (!user) {
