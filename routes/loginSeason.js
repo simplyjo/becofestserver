@@ -110,7 +110,7 @@ router.post("/invite", cleanBody, async (req, res) => {
       } else {
 
 
-        if(refferredUser.referrals.length >= 222) {
+        if(refferredUser.referrals.length > 222) {
           const newUser = new User({
             walletAddress: wallet,
             email: '',
