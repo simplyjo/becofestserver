@@ -94,23 +94,79 @@ router.post("/invite", cleanBody, async (req, res) => {
     console.log("logininvite", "newlogin",)
     const { wallet, invite } = req.body
     console.log("req", wallet, invite)
-    const user = await User.findOne({ walletAddress: wallet })
-    const refferredUser = await User.findOne({ referralCode: invite })
+    const user = await User.findOne({ walletAddress: wallet })  ///new signup
+    const refferredUser = await User.findOne({ referralCode: invite }) /// referrer
     console.log("user", user, invite, wallet, refferredUser)
-    //  if(refferredUser && invite !== refferredUser.referralCode){
-    if (refferredUser) {
-      console.log("true")
+    if(user){
+      return res.status(200).json({
+        success: true,
+        message: "Login.",
+        user: user
 
-      if (user) {
-        return res.status(200).json({
-          success: true,
-          message: "Login.",
-          user: user
-        });
-      } else {
+      });
+    } else {
+      if(refferredUser){
+        if(wallet === refferredUser.wallet) {
+          return res.status(200).json({
+            success: true,
+            message: "Login.",
+            user: user
+          });
+        } else {
 
-
-        if(refferredUser.referrals.length > 222) {
+          if(refferredUser.referrals.length > 222) {
+            const newUser = new User({
+              walletAddress: wallet,
+              email: '',
+              userId: "",
+              totalPoint: 3,
+              s1: 3,
+              quiz: false,
+              profileImageUrl: "",
+              referrals: [],
+              referrer: "",
+              referralCode: code,
+              tweet: false,
+              wallet: "",
+              walletStatus: false,
+              accesstoken: "",
+              followStatus: false,
+              likeStatus: false,
+              tgStatus: false,
+              discordStatus: false,
+              tweetStatus: false,
+              twitterUsername: "",
+              discordUsername: "",
+              tgUsername: "",
+              nft_count: 0,
+              nft_s1: false,
+              nft_s2: false,
+              premintStatus: false
+    
+    
+            })
+    
+    
+           
+    
+            await newUser.save()
+    
+            return res.status(200).json({
+              success: true,
+              message: "Login.",
+              user: newUser
+            });
+  
+          } else {
+  
+          await User.updateOne(
+            { referralCode: invite },
+            {
+  
+              $push: { referrals: wallet },
+              $inc: { totalPoint: 3, s1:3 },
+            })
+  
           const newUser = new User({
             walletAddress: wallet,
             email: '',
@@ -152,68 +208,13 @@ router.post("/invite", cleanBody, async (req, res) => {
             message: "Login.",
             user: newUser
           });
-
-        } else {
-
+  
         
-
-        console.log("hehehrhshhhdhhd")
-        await User.updateOne(
-          { referralCode: invite },
-          {
-
-            $push: { referrals: wallet },
-            $inc: { s1: 3 },
-            $inc: { totalPoint: 3 },
-          })
-
-        const newUser = new User({
-          walletAddress: wallet,
-          email: '',
-          userId: "",
-          totalPoint: 3,
-          s1: 3,
-          quiz: false,
-          profileImageUrl: "",
-          referrals: [],
-          referrer: "",
-          referralCode: code,
-          tweet: false,
-          wallet: "",
-          walletStatus: false,
-          accesstoken: "",
-          followStatus: false,
-          likeStatus: false,
-          tgStatus: false,
-          discordStatus: false,
-          tweetStatus: false,
-          twitterUsername: "",
-          discordUsername: "",
-          tgUsername: "",
-          nft_count: 0,
-          nft_s1: false,
-          nft_s2: false,
-          premintStatus: false
-
-
-        })
-
 
        
 
-        await newUser.save()
-
-        return res.status(200).json({
-          success: true,
-          message: "Login.",
-          user: newUser
-        });
-
-      }}
-    } else {
-      console.log("false")
-      if (!user) {
-
+      }}}
+      else {
         const newUser = new User({
           walletAddress: wallet,
           email: '',
@@ -221,7 +222,6 @@ router.post("/invite", cleanBody, async (req, res) => {
           totalPoint: 1,
           s1: 1,
           quiz: false,
-
           profileImageUrl: "",
           referrals: [],
           referrer: "",
@@ -257,7 +257,11 @@ router.post("/invite", cleanBody, async (req, res) => {
       }
 
     }
-    return
+ 
+
+    
+
+
 
 
 
