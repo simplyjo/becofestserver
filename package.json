@@ -9,7 +9,7 @@
     "eject": "react-scripts eject",
     "start": "nodemon server.js"
   },
-  "author": "solmememaxi",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "api": "^4.5.2",

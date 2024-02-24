@@ -38,7 +38,8 @@ nft_s2:false,
 premintStatus:false,
 followBecoStatus:false,
 discordBecoStatus:false,
-tgBecoStatus:false
+tgBecoStatus:false,
+likeAlphaStatus:false
 
 });
 

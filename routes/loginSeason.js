@@ -56,7 +56,8 @@ router.post("/", cleanBody, async (req, res) => {
         nft_count: 0,
         nft_s1: false,
         nft_s2: false,
-        premintStatus: false
+        premintStatus: false,
+        likeAlphaStatus:false
 
       })
 
@@ -141,7 +142,9 @@ router.post("/invite", cleanBody, async (req, res) => {
               nft_count: 0,
               nft_s1: false,
               nft_s2: false,
-              premintStatus: false
+              premintStatus: false,
+        likeAlphaStatus:false
+
     
     
             })
@@ -193,7 +196,9 @@ router.post("/invite", cleanBody, async (req, res) => {
             nft_count: 0,
             nft_s1: false,
             nft_s2: false,
-            premintStatus: false
+            premintStatus: false,
+        likeAlphaStatus:false
+
   
   
           })
@@ -241,7 +246,9 @@ router.post("/invite", cleanBody, async (req, res) => {
           nft_count: 0,
           nft_s1: false,
           nft_s2: false,
-          premintStatus: false
+          premintStatus: false,
+        likeAlphaStatus:false
+
 
         })
 
@@ -278,3 +285,12 @@ router.post("/invite", cleanBody, async (req, res) => {
 
 
 module.exports = router;
+
+
+  // await User.updateMany(
+  // {},
+  //   {
+  //     $set: { discord3Status:false,
+  //       followPartner3Status:false }
+  //   }
+  // )

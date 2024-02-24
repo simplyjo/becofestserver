@@ -163,7 +163,13 @@ router.get("/stats", cleanBody, async (req, res) => {
 
   try {
 
- 
+    // await Season.updateMany(
+    //   {},
+    //     {
+    //       $set: { likeAlphaStatus:false}
+         
+    //     }
+    //   )
  
    const stats = await Admin.find({})
  

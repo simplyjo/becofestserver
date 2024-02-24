@@ -98,6 +98,52 @@ router.patch("/like", cleanBody, async (req, res) => {
     });
   }
 });
+router.patch("/likeAlpha", cleanBody, async (req, res) => {
+  try {
+    // const { wallet} = req.body;
+    const { wallet, twitterName } = req.body;
+    const user = await Season.findOne({ walletAddress: wallet });
+
+
+    console.log("user", user, req.body)
+
+    if (!user) {
+      return res.send({
+        error: true,
+        message: "Server Error",
+      });
+    }
+
+    if (user.likeAlphaStatus) {
+      return res.send({
+        error: true,
+        message: "Reward Already Awarded",
+      });
+    }
+
+    user.s1 = user.s1 + 3
+    user.totalPoint = user.totalPoint + 3
+
+    user.twitterUsername = twitterName
+    user.likeAlphaStatus = true
+
+
+    await user.save()
+    //Success
+    return res.send({
+      success: true,
+      user: user,
+      message: "Reward Success!",
+
+    });
+  } catch (err) {
+    console.error("Login error", err);
+    return res.status(500).json({
+      error: true,
+      message: "Couldn't login. Please try again later.",
+    });
+  }
+});
 router.patch("/discord", cleanBody, async (req, res) => {
   try {
     // const { wallet} = req.body;
@@ -581,3 +627,12 @@ router.patch("/tgBeco", cleanBody, async (req, res) => {
   }
 });
 module.exports = router;
+
+
+  // await User.updateMany(
+  // {},
+  //   {
+  //     $set: { discord3Status:false,
+  //       followPartner3Status:false }
+  //   }
+  // )

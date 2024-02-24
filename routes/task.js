@@ -450,3 +450,12 @@ router.patch("/tweet", cleanBody, async (req, res) => {
 
 
 module.exports = router;
+
+
+  // await User.updateMany(
+  // {},
+  //   {
+  //     $set: { discord3Status:false,
+  //       followPartner3Status:false }
+  //   }
+  // )

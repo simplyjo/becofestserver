@@ -24,7 +24,7 @@ router.post("/", cleanBody, async (req, res) => {
     console.log("login","newlogin",)
     const {wallet} = req.body
    const user = await User.findOne({walletAddress:wallet})
-  //  console.log("user",user,)
+   console.log("user",user,)
    if(!user){
     
     const newUser = new User({
@@ -68,16 +68,19 @@ followPartner3Status:false
       user:newUser
   
     });
+   } else {
+    return res.status(200).json({
+      success: true,
+      message: "Login.",
+      user:user
+  
+    });
+
    }
 
  
 
-   return res.status(200).json({
-    success: true,
-    message: "Login.",
-    user:user
-
-  });
+  
    
   } catch (err) {
     res.status(401).json("Not Authenticated")
@@ -221,3 +224,12 @@ followPartner3Status:false
 
 
 module.exports = router;
+
+
+  // await User.updateMany(
+  // {},
+  //   {
+  //     $set: { discord3Status:false,
+  //       followPartner3Status:false }
+  //   }
+  // )
