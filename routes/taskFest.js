@@ -508,7 +508,7 @@ router.patch("/mint", cleanBody, async (req, res) => {
       });
     }
 
-    user.nft_count = 2
+    user.nft_count = user.nft_count + 1
     user.nft_s2 = true
     user.totalPoint = user.totalPoint + 10
     user.s2 = user.s2 + 10
