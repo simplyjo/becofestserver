@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 const adminSchema = new Schema({
   
   walletAddress: { type: String},
-  nft_minted_s1_total:0
+  nft_minted_s1_total:0,
+  nft_minted_s2_total:0
 
 
 });

@@ -21,67 +21,67 @@ router.post("/", cleanBody, async (req, res) => {
   try {
 
 
-    console.log("login","newlogin",)
-    const {wallet} = req.body
-   const user = await User.findOne({walletAddress:wallet})
-   console.log("user",user,)
-   if(!user){
-    
-    const newUser = new User({
-      walletAddress:wallet,
-      email:'',
-      userId:"",
-      totalPoint:0,
-      profileImageUrl: "",
-      task_one:false,
-      task_two:false,
-      task_three:false,
-      task_four:false,
-      referrals:[],
-      referrer:"",
-      referralCode:wallet,
-      tweet:false,
-      wallet:"",
-      walletStatus:false,
-      accesstoken:"",
-      followStatus:false,
-      followPartnerStatus:false,
-      likeStatus:false,
-      tgStatus:false,
-      discordStatus:false,
-      tweetStatus:false,
-      twitterUsername:"",
-      discordUsername:"",
-      tgUsername:"",
-      tgPartner2Status:false,
-      followPartner2Status:false,
-      discord3Status:false,
-followPartner3Status:false
+    console.log("login", "newlogin",)
+    const { wallet } = req.body
+    const user = await User.findOne({ walletAddress: wallet })
+    console.log("user", user,)
+    if (!user) {
 
-     })
-  
-    
+      const newUser = new User({
+        walletAddress: wallet,
+        email: '',
+        userId: "",
+        totalPoint: 0,
+        profileImageUrl: "",
+        task_one: false,
+        task_two: false,
+        task_three: false,
+        task_four: false,
+        referrals: [],
+        referrer: "",
+        referralCode: wallet,
+        tweet: false,
+        wallet: "",
+        walletStatus: false,
+        accesstoken: "",
+        followStatus: false,
+        followPartnerStatus: false,
+        likeStatus: false,
+        tgStatus: false,
+        discordStatus: false,
+        tweetStatus: false,
+        twitterUsername: "",
+        discordUsername: "",
+        tgUsername: "",
+        tgPartner2Status: false,
+        followPartner2Status: false,
+        discord3Status: false,
+        followPartner3Status: false
 
-     return res.status(200).json({
-      success: true,
-      message: "Login.",
-      user:newUser
-  
-    });
-   } else {
-    return res.status(200).json({
-      success: true,
-      message: "Login.",
-      user:user
-  
-    });
+      })
 
-   }
 
- 
 
-  
-   
+      return res.status(200).json({
+        success: true,
+        message: "Login.",
+        user: newUser
+
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "Login.",
+        user: user
+
+      });
+
+    }
+
+
+
+
+
   } catch (err) {
     res.status(401).json("Not Authenticated")
   }
@@ -92,126 +92,126 @@ router.post("/invite", cleanBody, async (req, res) => {
   try {
 
 
-    console.log("logininvite","newlogin",)
-    const {wallet, invite} = req.body
-   const user = await User.findOne({walletAddress:wallet})
-   const refferredUser = await User.findOne({walletAddress:invite})
-   console.log("user",user,invite,wallet,refferredUser)
-   if(refferredUser && invite !== wallet){
+    console.log("logininvite", "newlogin",)
+    const { wallet, invite } = req.body
+    const user = await User.findOne({ walletAddress: wallet })
+    const refferredUser = await User.findOne({ walletAddress: invite })
+    console.log("user", user, invite, wallet, refferredUser)
+    if (refferredUser && invite !== wallet) {
       console.log("true")
-      if(!user){
+      if (!user) {
 
         await User.update(
           { referralCode: invite },
           {
-    
+
             $push: { referrals: wallet },
             $inc: { totalPoint: 250 }
-      })
-    
+          })
+
         const newUser = new User({
-          walletAddress:wallet,
-          email:'',
-          userId:"",
-          totalPoint:250,
+          walletAddress: wallet,
+          email: '',
+          userId: "",
+          totalPoint: 250,
           profileImageUrl: "",
-          task_one:false,
-          task_two:false,
-          task_three:false,
-          task_four:false,
-          referrals:[],
-          referrer:invite,
-          referralCode:wallet,
-          tweet:false,
-          wallet:"",
-          walletStatus:false,
-          accesstoken:"",
-          followStatus:false,
-          ownerStatus:false,
-          likeStatus:false,
-          tgStatus:false,
-          discordStatus:false,
-          tweetStatus:false,
-          twitterUsername:"",
-          discordUsername:"",
-          tgUsername:"",
-          tgPartner2Status:false,
-          followPartner2Status:false,
-  followPartnerStatus:false,
-  discord3Status:false,
-followPartner3Status:false
-         })
-      
-         await newUser.save()
-    
-         return res.status(200).json({
+          task_one: false,
+          task_two: false,
+          task_three: false,
+          task_four: false,
+          referrals: [],
+          referrer: invite,
+          referralCode: wallet,
+          tweet: false,
+          wallet: "",
+          walletStatus: false,
+          accesstoken: "",
+          followStatus: false,
+          ownerStatus: false,
+          likeStatus: false,
+          tgStatus: false,
+          discordStatus: false,
+          tweetStatus: false,
+          twitterUsername: "",
+          discordUsername: "",
+          tgUsername: "",
+          tgPartner2Status: false,
+          followPartner2Status: false,
+          followPartnerStatus: false,
+          discord3Status: false,
+          followPartner3Status: false
+        })
+
+        await newUser.save()
+
+        return res.status(200).json({
           success: true,
           message: "Login.",
-          user:newUser
-      
+          user: newUser
+
         });
-       }
-    
-   } else {
-    console.log("false")
-    if(!user){
-    
-      const newUser = new User({
-        walletAddress:wallet,
-        email:'',
-        userId:"",
-        totalPoint:100,
-        profileImageUrl: "",
-        task_one:false,
-        task_two:false,
-        task_three:false,
-        task_four:false,
-        referrals:[],
-        referrer:"",
-        referralCode:wallet,
-        tweet:false,
-        wallet:"",
-        walletStatus:false,
-        accesstoken:"",
-        followStatus:false,
-        ownerStatus:false,
-        likeStatus:false,
-        tgStatus:false,
-        discordStatus:false,
-        tweetStatus:false,
-        twitterUsername:"",
-        discordUsername:"",
-        tgUsername:"",
-        tgPartner2Status:false,
-        followPartner2Status:false,
-followPartnerStatus:false,
-discord3Status:false,
-followPartner3Status:false
+      }
 
-       })
-    
-       await newUser.save()
-  
-       return res.status(200).json({
-        success: true,
-        message: "Login.",
-        user:newUser
-    
-      });
-     }
-  
-   }
-   return
+    } else {
+      console.log("false")
+      if (!user) {
 
- 
+        const newUser = new User({
+          walletAddress: wallet,
+          email: '',
+          userId: "",
+          totalPoint: 100,
+          profileImageUrl: "",
+          task_one: false,
+          task_two: false,
+          task_three: false,
+          task_four: false,
+          referrals: [],
+          referrer: "",
+          referralCode: wallet,
+          tweet: false,
+          wallet: "",
+          walletStatus: false,
+          accesstoken: "",
+          followStatus: false,
+          ownerStatus: false,
+          likeStatus: false,
+          tgStatus: false,
+          discordStatus: false,
+          tweetStatus: false,
+          twitterUsername: "",
+          discordUsername: "",
+          tgUsername: "",
+          tgPartner2Status: false,
+          followPartner2Status: false,
+          followPartnerStatus: false,
+          discord3Status: false,
+          followPartner3Status: false
 
-   return res.status(200).json({
-    success: true,
-    message: "Login.",
-    user:user
+        })
 
-  });
-   
+        await newUser.save()
+
+        return res.status(200).json({
+          success: true,
+          message: "Login.",
+          user: newUser
+
+        });
+      }
+
+    }
+    return
+
+
+
+    return res.status(200).json({
+      success: true,
+      message: "Login.",
+      user: user
+
+    });
+
   } catch (err) {
     res.status(401).json("Not Authenticated")
   }
@@ -226,10 +226,33 @@ followPartner3Status:false
 module.exports = router;
 
 
-  // await User.updateMany(
-  // {},
-  //   {
-  //     $set: { discord3Status:false,
-  //       followPartner3Status:false }
-  //   }
-  // )
+// await User.updateMany(
+// {},
+//   {
+//     $set: { discord3Status:false,
+//       followPartner3Status:false }
+//   }
+// )
+
+// await User.updateMany(
+//   {},
+//   {
+//     $set: {
+//       quiz: false,
+//       followStatus: false,
+//       walletStatus: false,
+//       tweet: false,
+//       likeStatus: false,
+//       tgStatus: false,
+//       discordStatus: false,
+//       tweetStatus: false,
+//       nft_s2: false,
+//       premintStatus: false,
+//       followBecoStatus: false,
+//       discordBecoStatus: false,
+//       tgBecoStatus: false,
+//       likeAlphaStatus: false
+//     }
+//   }
+// )
+

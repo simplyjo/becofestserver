@@ -12,7 +12,6 @@ const seasonSchema = new Schema({
  userId:"",
 totalPoint:0,
 quiz:false,
-
 s1:0,
 s2:0,
 s3:0,

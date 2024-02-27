@@ -29,7 +29,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
     user.twitterUsername = twitterName
     user.followStatus = true
@@ -77,7 +77,7 @@ router.patch("/like", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 3
+    user.s1 = user.s1 + 3
     user.totalPoint = user.totalPoint + 3
 
     user.twitterUsername = twitterName
@@ -123,7 +123,7 @@ router.patch("/likeAlpha", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 3
+    user.s1 = user.s1 + 3
     user.totalPoint = user.totalPoint + 3
 
     user.twitterUsername = twitterName
@@ -152,7 +152,7 @@ router.patch("/discord", cleanBody, async (req, res) => {
     const { wallet, discordName } = req.body;
     const user = await Season.findOne({ walletAddress: wallet });
 
-  
+ 
     console.log("user", user, req.body)
 
     if (!user) {
@@ -169,7 +169,7 @@ router.patch("/discord", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 1
+    user.s1 = user.s1 + 1
     user.totalPoint = user.totalPoint + 1
     user.discordUsername = discordName
 
@@ -216,7 +216,7 @@ router.patch("/tg", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
 
     user.tgUsername = tgName
@@ -263,7 +263,7 @@ router.patch("/tgpartner", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 222
+    user.s1 = user.s1 + 222
     user.tgUsername = tgName
 
     user.tgPartner2Status = true
@@ -308,7 +308,7 @@ router.patch("/tweet", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 5
+    user.s1 = user.s1 + 5
     user.totalPoint = user.totalPoint + 5
     user.twitterUsername = twitterName
     user.tweetStatus = true
@@ -353,7 +353,7 @@ router.patch("/quiz", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 5
+    user.s1 = user.s1 + 5
     user.totalPoint = user.totalPoint + 5
     user.quiz = true
 
@@ -396,7 +396,7 @@ router.patch("/premint", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
     user.premintStatus = true
 
@@ -439,7 +439,7 @@ router.patch("/galxe", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
     user.galxeStatus = true
 
@@ -501,18 +501,18 @@ router.patch("/mint", cleanBody, async (req, res) => {
 
     // console.log("nft_total", total)
 
-    if (admin.nft_minted_s2_total >= 10000) {
+    if (admin.nft_minted_s1_total >= 10000) {
       return res.send({
         error: true,
         message: "Max Cap Reached",
       });
     }
 
-    user.nft_count = 2
-    user.nft_s2 = true
+    user.nft_count = 1
+    user.nft_s1 = true
     user.totalPoint = user.totalPoint + 10
-    user.s2 = user.s2 + 10
-    admin.nft_minted_s2_total =   admin.nft_minted_s2_total + 1
+    user.s1 = user.s1 + 10
+    admin.nft_minted_s1_total =   admin.nft_minted_s1_total + 1
 
     await user.save()
     await admin.save()
@@ -556,7 +556,7 @@ router.patch("/followBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
     user.twitterUsername = twitterName
     user.followBecoStatus = true
@@ -601,7 +601,7 @@ router.patch("/discordBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 1
+    user.s1 = user.s1 + 1
     user.totalPoint = user.totalPoint + 1
     user.discordUsername = discordName
 
@@ -647,7 +647,7 @@ router.patch("/tgBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s2 = user.s2 + 2
+    user.s1 = user.s1 + 2
     user.totalPoint = user.totalPoint + 2
 
     user.tgUsername = tgName
