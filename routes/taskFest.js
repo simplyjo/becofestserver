@@ -476,7 +476,7 @@ router.patch("/mint", cleanBody, async (req, res) => {
       });
     }
 
-    if (user.nft_s1) {
+    if (user.nft_s2) {
       return res.send({
         error: true,
         message: "NFT Already Minted",
