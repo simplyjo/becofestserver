@@ -20,12 +20,7 @@ router.post("/", cleanBody, async (req, res) => {
   try {
     // console.log('code', nanoid(CHARACTER_SET,8))
 
-    await User.updateMany(
-      {},
-        {
-          $set: { tgAlphaStatus:false }
-        }
-      )
+   
 
     console.log("login", "newlogin",)
     const { wallet } = req.body
