@@ -34,11 +34,13 @@ tgUsername:"",
 nft_count:0,
 nft_s1:false,
 nft_s2:false,
+nft_s3:false,
 premintStatus:false,
 followBecoStatus:false,
 discordBecoStatus:false,
 tgBecoStatus:false,
-likeAlphaStatus:false
+likeAlphaStatus:false,
+followAlphaStatus:false,
 
 });
 

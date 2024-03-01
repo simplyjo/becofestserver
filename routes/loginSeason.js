@@ -25,6 +25,8 @@ router.post("/", cleanBody, async (req, res) => {
 
 
 
+
+
     console.log("login", "newlogin",)
     const { wallet } = req.body
     const user = await User.findOne({ walletAddress: wallet })
@@ -38,7 +40,7 @@ router.post("/", cleanBody, async (req, res) => {
         userId: "",
         totalPoint: 1,
         quiz: false,
-        s1: 1,
+        s3: 1,
         profileImageUrl: "",
         referrals: [],
         referrer: "",
@@ -50,6 +52,7 @@ router.post("/", cleanBody, async (req, res) => {
         followStatus: false,
         likeStatus: false,
         tgStatus: false,
+        tgBecoStatus: false,
         discordStatus: false,
         tweetStatus: false,
         twitterUsername: "",
@@ -58,8 +61,11 @@ router.post("/", cleanBody, async (req, res) => {
         nft_count: 0,
         nft_s1: false,
         nft_s2: false,
+        nft_s3: false,
         premintStatus: false,
-        likeAlphaStatus: false
+        likeAlphaStatus: false,
+        followStatus:false,
+        followAlphaStatus:false,
 
       })
 
@@ -116,7 +122,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           {
 
             $push: { referrals: wallet },
-            $inc: { totalPoint: 3, s2: 3 },
+            $inc: { totalPoint: 3, s3: 3 },
           })
 
 
@@ -126,7 +132,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           email: '',
           userId: "",
           totalPoint: 3,
-          s2: 3,
+          s3: 3,
           quiz: false,
           profileImageUrl: "",
           referrals: [],
@@ -147,8 +153,12 @@ router.post("/invite", cleanBody, async (req, res) => {
           nft_count: 0,
           nft_s1: false,
           nft_s2: false,
+          nft_s3: false,
           premintStatus: false,
           likeAlphaStatus: false,
+followAlphaStatus:false,
+tgBecoStatus: false,
+
     
         })
 
@@ -174,7 +184,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           email: '',
           userId: "",
           totalPoint: 1,
-          s2: 1,
+          s3: 1,
           quiz: false,
           profileImageUrl: "",
           referrals: [],
@@ -195,9 +205,11 @@ router.post("/invite", cleanBody, async (req, res) => {
           nft_count: 0,
           nft_s1: false,
           nft_s2: false,
+          nft_s3: false,
           premintStatus: false,
-        likeAlphaStatus:false
-
+        likeAlphaStatus:false,
+        followAlphaStatus:false,
+        tgBecoStatus: false,
 
         })
 
@@ -254,3 +266,27 @@ module.exports = router;
   //       followPartner3Status:false }
   //   }
   // )
+
+
+  //   await User.updateMany(
+//   {},
+//     {
+//       $set: { 
+
+//         followStatus:false,
+// walletStatus:false,
+// tweet:false,
+// likeStatus:false,
+// tgStatus:false,
+// discordStatus:false,
+// tweetStatus:false,
+// premintStatus:false,
+// followBecoStatus:false,
+// discordBecoStatus:false,
+// tgBecoStatus:false,
+// likeAlphaStatus:false,
+// followAlphaStatus:false,
+// quiz:false
+//        }
+//     }
+//   )
