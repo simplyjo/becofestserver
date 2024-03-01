@@ -18,14 +18,14 @@ const code = nanoid()
 router.post("/", cleanBody, async (req, res) => {
 
   try {
-
-
     // console.log('code', nanoid(CHARACTER_SET,8))
 
-
-
-
-
+    await User.updateMany(
+      {},
+        {
+          $set: { tgAlphaStatus:false }
+        }
+      )
 
     console.log("login", "newlogin",)
     const { wallet } = req.body
@@ -33,7 +33,6 @@ router.post("/", cleanBody, async (req, res) => {
 
     //  console.log("user",user,)
     if (!user) {
-
       const newUser = new User({
         walletAddress: wallet,
         email: '',
@@ -66,6 +65,7 @@ router.post("/", cleanBody, async (req, res) => {
         likeAlphaStatus: false,
         followStatus:false,
         followAlphaStatus:false,
+        tgAlphaStatus:false,
 
       })
 
@@ -158,6 +158,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           likeAlphaStatus: false,
 followAlphaStatus:false,
 tgBecoStatus: false,
+tgAlphaStatus:false,
 
     
         })
@@ -210,6 +211,7 @@ tgBecoStatus: false,
         likeAlphaStatus:false,
         followAlphaStatus:false,
         tgBecoStatus: false,
+        tgAlphaStatus:false,
 
         })
 

@@ -41,6 +41,7 @@ discordBecoStatus:false,
 tgBecoStatus:false,
 likeAlphaStatus:false,
 followAlphaStatus:false,
+tgAlphaStatus:false,
 
 });
 

@@ -21,6 +21,7 @@ router.post("/", cleanBody, async (req, res) => {
   try {
 
 
+
     console.log("login", "newlogin",)
     const { wallet } = req.body
     const user = await User.findOne({ walletAddress: wallet })
@@ -56,7 +57,9 @@ router.post("/", cleanBody, async (req, res) => {
         tgPartner2Status: false,
         followPartner2Status: false,
         discord3Status: false,
-        followPartner3Status: false
+        followPartner3Status: false,
+        tgAlphaStatus: false,
+
 
       })
 
@@ -139,7 +142,9 @@ router.post("/invite", cleanBody, async (req, res) => {
           followPartner2Status: false,
           followPartnerStatus: false,
           discord3Status: false,
-          followPartner3Status: false
+          followPartner3Status: false,
+          tgAlphaStatus: false,
+
         })
 
         await newUser.save()
@@ -186,7 +191,9 @@ router.post("/invite", cleanBody, async (req, res) => {
           followPartner2Status: false,
           followPartnerStatus: false,
           discord3Status: false,
-          followPartner3Status: false
+          followPartner3Status: false,
+          tgAlphaStatus: false,
+
 
         })
 
