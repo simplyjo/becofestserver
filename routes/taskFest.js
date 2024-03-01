@@ -547,12 +547,12 @@ router.patch("/mint", cleanBody, async (req, res) => {
 
     // console.log("nft_total", total)
 
-    if (admin.nft_minted_s3_total >= 10000) {
-      return res.send({
-        error: true,
-        message: "Max Cap Reached",
-      });
-    }
+    // if (admin.nft_minted_s3_total >= 10000) {
+    //   return res.send({
+    //     error: true,
+    //     message: "Max Cap Reached",
+    //   });
+    // }
 
     user.nft_count = user.nft_count + 1
     user.nft_s3 = true
