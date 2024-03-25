@@ -20,9 +20,36 @@ router.post("/", cleanBody, async (req, res) => {
   try {
     // console.log('code', nanoid(CHARACTER_SET,8))
 
-   
+    await User.updateMany(
+      {},
+      {
+        $set: {
 
-    console.log("login", "newlogin",)
+          followStatus: false,
+          walletStatus: false,
+          tweet: false,
+          likeStatus: false,
+          tgStatus: false,
+          discordStatus: false,
+          tweetStatus: false,
+          premintStatus: false,
+          followBecoStatus: false,
+          discordBecoStatus: false,
+          tgBecoStatus: false,
+          likeAlphaStatus: false,
+          followAlphaStatus: false,
+          s4:0,
+          s5:0,
+          s6:0,
+          nft_s4:false,
+          nft_s5: false,
+          nft_s6: false,
+          quiz: false
+        }
+      }
+    )
+
+    console.log("login", "newlogin", wallet)
     const { wallet } = req.body
     const user = await User.findOne({ walletAddress: wallet })
 
@@ -34,7 +61,7 @@ router.post("/", cleanBody, async (req, res) => {
         userId: "",
         totalPoint: 1,
         quiz: false,
-        s3: 1,
+        s4: 1,
         profileImageUrl: "",
         referrals: [],
         referrer: "",
@@ -56,11 +83,14 @@ router.post("/", cleanBody, async (req, res) => {
         nft_s1: false,
         nft_s2: false,
         nft_s3: false,
+        nft_s4: false,
+        nft_s5: false,
+        nft_s6: false,
         premintStatus: false,
         likeAlphaStatus: false,
-        followStatus:false,
-        followAlphaStatus:false,
-        tgAlphaStatus:false,
+        followStatus: false,
+        followAlphaStatus: false,
+        tgAlphaStatus: false,
 
       })
 
@@ -117,7 +147,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           {
 
             $push: { referrals: wallet },
-            $inc: { totalPoint: 3, s3: 3 },
+            $inc: { totalPoint: 3, s4: 3 },
           })
 
 
@@ -127,7 +157,7 @@ router.post("/invite", cleanBody, async (req, res) => {
           email: '',
           userId: "",
           totalPoint: 3,
-          s3: 3,
+          s4: 3,
           quiz: false,
           profileImageUrl: "",
           referrals: [],
@@ -149,13 +179,16 @@ router.post("/invite", cleanBody, async (req, res) => {
           nft_s1: false,
           nft_s2: false,
           nft_s3: false,
+          nft_s4: false,
+          nft_s5: false,
+          nft_s6: false,
           premintStatus: false,
           likeAlphaStatus: false,
-followAlphaStatus:false,
-tgBecoStatus: false,
-tgAlphaStatus:false,
+          followAlphaStatus: false,
+          tgBecoStatus: false,
+          tgAlphaStatus: false,
 
-    
+
         })
 
 
@@ -172,15 +205,15 @@ tgAlphaStatus:false,
     } else {
       console.log("no user========================", wallet)
 
-    
+
       if (!user) {
 
-            const newUser = new User({
+        const newUser = new User({
           walletAddress: wallet,
           email: '',
           userId: "",
           totalPoint: 1,
-          s3: 1,
+          s4: 1,
           quiz: false,
           profileImageUrl: "",
           referrals: [],
@@ -202,11 +235,14 @@ tgAlphaStatus:false,
           nft_s1: false,
           nft_s2: false,
           nft_s3: false,
+          nft_s4: false,
+          nft_s5: false,
+          nft_s6: false,
           premintStatus: false,
-        likeAlphaStatus:false,
-        followAlphaStatus:false,
-        tgBecoStatus: false,
-        tgAlphaStatus:false,
+          likeAlphaStatus: false,
+          followAlphaStatus: false,
+          tgBecoStatus: false,
+          tgAlphaStatus: false,
 
         })
 
@@ -268,7 +304,7 @@ module.exports = router;
   //   await User.updateMany(
 //   {},
 //     {
-//       $set: { 
+//       $set: {
 
 //         followStatus:false,
 // walletStatus:false,

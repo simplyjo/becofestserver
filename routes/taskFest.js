@@ -13,6 +13,17 @@ router.patch("/follow", cleanBody, async (req, res) => {
 
   
 
+   await Admin.updateMany(
+  {},
+    {
+      $set: {
+        nft_minted_s4_total:0,
+        nft_minted_s5_total:0,
+        nft_minted_s6_total:0,
+       }
+    }
+  )
+
     console.log("user", user, req.body)
 
     if (!user) {
@@ -29,7 +40,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
     user.twitterUsername = twitterName
     user.followStatus = true
@@ -75,7 +86,7 @@ router.patch("/followAlpha", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
     user.twitterUsername = twitterName
     user.followAlphaStatus = true
@@ -123,7 +134,7 @@ router.patch("/like", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 3
+    user.s4 = user.s4 + 3
     user.totalPoint = user.totalPoint + 3
 
     user.twitterUsername = twitterName
@@ -169,7 +180,7 @@ router.patch("/likeAlpha", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 3
+    user.s4 = user.s4 + 3
     user.totalPoint = user.totalPoint + 3
 
     user.twitterUsername = twitterName
@@ -215,7 +226,7 @@ router.patch("/discord", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 1
+    user.s4 = user.s4 + 1
     user.totalPoint = user.totalPoint + 1
     user.discordUsername = discordName
 
@@ -262,7 +273,7 @@ router.patch("/tg", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
 
     user.tgUsername = tgName
@@ -309,7 +320,7 @@ router.patch("/tgpartner", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 222
+    user.s4 = user.s4 + 222
     user.tgUsername = tgName
 
     user.tgPartner2Status = true
@@ -354,7 +365,7 @@ router.patch("/tweet", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 5
+    user.s4 = user.s4 + 5
     user.totalPoint = user.totalPoint + 5
     user.twitterUsername = twitterName
     user.tweetStatus = true
@@ -399,7 +410,7 @@ router.patch("/quiz", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 5
+    user.s4 = user.s4 + 5
     user.totalPoint = user.totalPoint + 5
     user.quiz = true
 
@@ -442,7 +453,7 @@ router.patch("/premint", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
     user.premintStatus = true
 
@@ -485,7 +496,7 @@ router.patch("/galxe", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
     user.galxeStatus = true
 
@@ -522,7 +533,7 @@ router.patch("/mint", cleanBody, async (req, res) => {
       });
     }
 
-    if (user.nft_s3) {
+    if (user.nft_s4) {
       return res.send({
         error: true,
         message: "NFT Already Minted",
@@ -547,7 +558,7 @@ router.patch("/mint", cleanBody, async (req, res) => {
 
     // console.log("nft_total", total)
 
-    // if (admin.nft_minted_s3_total >= 10000) {
+    // if (admin.nft_minted_s4_total >= 10000) {
     //   return res.send({
     //     error: true,
     //     message: "Max Cap Reached",
@@ -555,10 +566,10 @@ router.patch("/mint", cleanBody, async (req, res) => {
     // }
 
     user.nft_count = user.nft_count + 1
-    user.nft_s3 = true
+    user.nft_s4 = true
     user.totalPoint = user.totalPoint + 10
-    user.s3 = user.s3 + 10
-    admin.nft_minted_s3_total =   admin.nft_minted_s3_total + 1
+    user.s4 = user.s4 + 10
+    admin.nft_minted_s4_total =   admin.nft_minted_s4_total + 1
 
     await user.save()
     await admin.save()
@@ -602,7 +613,7 @@ router.patch("/followBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
     user.twitterUsername = twitterName
     user.followBecoStatus = true
@@ -647,7 +658,7 @@ router.patch("/discordBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 1
+    user.s4 = user.s4 + 1
     user.totalPoint = user.totalPoint + 1
     user.discordUsername = discordName
 
@@ -693,7 +704,7 @@ router.patch("/tgBeco", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
 
     user.tgUsername = tgName
@@ -740,7 +751,7 @@ router.patch("/tgAlpha", cleanBody, async (req, res) => {
       });
     }
 
-    user.s3 = user.s3 + 2
+    user.s4 = user.s4 + 2
     user.totalPoint = user.totalPoint + 2
 
     user.tgUsername = tgName
