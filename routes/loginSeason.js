@@ -7,53 +7,64 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { customAlphabet } = require("nanoid");
 const mongoose = require("mongoose");
+const Admin = require("../models/admin");
 
-// Generate Referral Code for new user
-const CHARACTER_SET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-const REFERRAL_CODE_LENGTH = 8;
-// Generate Referral Code for new user
 
-const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 8);
-const code = nanoid()
 router.post("/", cleanBody, async (req, res) => {
 
   try {
     // console.log('code', nanoid(CHARACTER_SET,8))
 
-    await User.updateMany(
-      {},
-      {
-        $set: {
 
-          followStatus: false,
-          walletStatus: false,
-          tweet: false,
-          likeStatus: false,
-          tgStatus: false,
-          discordStatus: false,
-          tweetStatus: false,
-          premintStatus: false,
-          followBecoStatus: false,
-          discordBecoStatus: false,
-          tgBecoStatus: false,
-          likeAlphaStatus: false,
-          followAlphaStatus: false,
-          s4:0,
-          s5:0,
-          s6:0,
-          nft_s4:false,
-          nft_s5: false,
-          nft_s6: false,
-          quiz: false
-        }
-      }
-    )
+    // await Admin.updateMany(
+    //   {},
+    //     {
+    //       $set: {
+    //         nft_minted_s4_total:0,
+    //         nft_minted_s5_total:0,
+    //         nft_minted_s6_total:0,
+    //        }
+    //     }
+    //   )
 
-    console.log("login", "newlogin", wallet)
-    const { wallet } = req.body
+    // await User.updateMany(
+    //   {},
+    //   {
+    //     $set: {
+
+    //       followStatus: false,
+    //       walletStatus: false,
+    //       tweet: false,
+    //       likeStatus: false,
+    //       tgStatus: false,
+    //       discordStatus: false,
+    //       tweetStatus: false,
+    //       premintStatus: false,
+    //       followBecoStatus: false,
+    //       discordBecoStatus: false,
+    //       tgBecoStatus: false,
+    //       likeAlphaStatus: false,
+    //       followAlphaStatus: false,
+    //       s4:0,
+    //       s5:0,
+    //       s6:0,
+    //       nft_s4:false,
+    //       nft_s5: false,
+    //       nft_s6: false,
+    //       quiz: false
+    //     }
+    //   }
+    // )
+    // const  {wallet}  = req.params
+    const  {wallet}  = req.query
+
+    console.log("logintop", "newlogin", wallet)
+    // const { wallet } = req.body
+    // console.log("login", "newlogin", wallet)
+
     const user = await User.findOne({ walletAddress: wallet })
 
-    //  console.log("user",user,)
+     console.log("user",user,wallet)
     if (!user) {
       const newUser = new User({
         walletAddress: wallet,

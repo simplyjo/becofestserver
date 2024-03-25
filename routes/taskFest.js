@@ -13,16 +13,7 @@ router.patch("/follow", cleanBody, async (req, res) => {
 
   
 
-   await Admin.updateMany(
-  {},
-    {
-      $set: {
-        nft_minted_s4_total:0,
-        nft_minted_s5_total:0,
-        nft_minted_s6_total:0,
-       }
-    }
-  )
+
 
     console.log("user", user, req.body)
 
